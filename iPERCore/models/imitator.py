@@ -401,6 +401,7 @@ class Imitator(BaseRunnerModel):
             bg = np.transpose(bg, (2, 0, 1))
             bgs.append(bg[np.newaxis, :, :, :])
         bg_img = np.concatenate(bgs)
+        bg_img = torch.from_numpy(bg_img).to(self.device)
 
         pred_imgs = tsf_mask * bg_img + (1 - tsf_mask) * tsf_img
 
