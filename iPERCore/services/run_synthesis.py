@@ -116,7 +116,7 @@ def imitate(opt):
         vid_info_path: ../tests/debug/primitives/bantangzhuyi_1/processed/vid_info.pkl
         """
 
-        ref_info = joblib.load('.results/synthesis/ref_info.pkl')
+        ref_info = joblib.load('./results/synthesis/ref_info.pkl')
         out_dir = "./result/synthesis_dataset/"
 
         _ = call_imitator_inference(
