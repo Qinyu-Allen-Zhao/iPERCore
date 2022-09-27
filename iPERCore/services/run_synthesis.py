@@ -16,7 +16,7 @@ from iPERCore.services.base_runner import (
 )
 
 
-def call_imitator_inference(opt, imitator, out_dir,
+def call_imitator_inference(opt, imitator, out_dir, prefix,
                             ref_smpls, visualizer, use_selected_f2pts=False):
     """
 
@@ -32,14 +32,12 @@ def call_imitator_inference(opt, imitator, out_dir,
         outputs (List[Tuple[str]]):
     """
 
-    out_imgs_dir = clear_dir(out_dir)
-
     # add hands parameters to smpl
     ref_smpls = add_hands_params_to_smpl(ref_smpls, imitator.body_rec.np_hands_mean)
 
     # run imitator's inference function
-    outputs = imitator.inference(tgt_smpls=ref_smpls, cam_strategy=opt.cam_strategy,
-                                 output_dir=out_imgs_dir, prefix="pred_", visualizer=visualizer,
+    outputs = imitator.inference(tgt_smpls=ref_smpls, cam_strategy="no",
+                                 output_dir=out_dir, prefix=prefix, visualizer=visualizer,
                                  verbose=True, use_selected_f2pts=use_selected_f2pts)
     outputs = list(zip(outputs))
 
@@ -117,10 +115,10 @@ def imitate(opt):
         """
 
         ref_info = joblib.load('./results/synthesis/ref_info.pkl')
-        out_dir = "./result/synthesis_dataset/"
-
+        out_dir = "/content/drive/MyDrive/datasets/synthesis_dataset/"
+        prefix = 'sub%s' % i
         _ = call_imitator_inference(
-            opt, imitator, out_dir,
+            opt, imitator, out_dir, prefix,
             ref_smpls=ref_info["smpls"],
             visualizer=visualizer
         )
