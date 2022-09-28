@@ -1,4 +1,5 @@
 import joblib
+import numpy as np
 
 from iPERCore.models import ModelsFactory
 from iPERCore.tools.utils.signals.smooth import temporal_smooth_smpls
@@ -72,6 +73,9 @@ def imitate(opt):
 
     meta_src_proc = opt.meta_data["meta_src"]
 
+    # COCO smpls
+    coco_info = joblib.load('./results/synthesis/ref_info.pkl')
+
     all_meta_outputs = []
     for i, meta_src in enumerate(meta_src_proc):
         """
@@ -114,7 +118,10 @@ def imitate(opt):
         vid_info_path: ../tests/debug/primitives/bantangzhuyi_1/processed/vid_info.pkl
         """
 
-        ref_info = joblib.load('./results/synthesis/ref_info.pkl')
+        choices = np.random.choice(range(len(coco_info['smpls'])), 500, replace=False)
+        ref_info = {
+            "smpls": coco_info['smpls'][choices]
+        }
         out_dir = "/content/drive/MyDrive/datasets/synthesis_dataset/"
         prefix = 'sub%s' % i
         _ = call_imitator_inference(
