@@ -404,7 +404,7 @@ class Imitator(BaseRunnerModel):
         bg_img = np.concatenate(bgs).astype(np.float32) / 255
         bg_img = torch.from_numpy(bg_img).to(self.device)
 
-        pred_imgs = tsf_mask * bg_img + (1 - tsf_mask) * tsf_img
+        pred_imgs = tsf_mask * bg_img + (1 - tsf_mask) * (tsf_img + 1) / 2.0
 
         curr = time.time()
         torch.save(tsf_mask, '/content/drive/MyDrive/datasets/syn_human/%d_mask.pt' % curr)

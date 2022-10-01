@@ -109,7 +109,7 @@ def save_cv2_img(img, path, image_size=None, normalize=False, transpose=True):
         img = cv2.resize(img, (image_size, image_size))
 
     if normalize:
-        img = (img + 1) / 2.0 * 255
+        img = img * 255
         img = img.astype(np.uint8)
 
     cv2.imwrite(path, img)
