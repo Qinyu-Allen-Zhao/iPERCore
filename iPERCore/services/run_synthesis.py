@@ -122,9 +122,9 @@ def imitate(opt):
         ref_info = {
             "smpls": coco_info['smpls'][choices]
         }
-        joblib.dump(ref_info, "/content/drive/MyDrive/datasets/syn_poses/sub%d.pkl" % i)
+        joblib.dump(ref_info, "/content/drive/MyDrive/datasets/syn_poses/sub%d.pkl" % opt.sub_id)
         out_dir = "/content/drive/MyDrive/datasets/synthesis_dataset/"
-        prefix = 'sub%d_' % i
+        prefix = 'sub%d_' % opt.sub_id
         _ = call_imitator_inference(
             opt, imitator, out_dir, prefix,
             ref_smpls=ref_info["smpls"],

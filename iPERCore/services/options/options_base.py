@@ -53,6 +53,9 @@ class BaseOptions(object):
                                   help="name of the checkpoints directory. "
                                        "The model will be saved in output_dir/models/model_id.")
 
+        self._parser.add_argument("--sub_id", type=int, default=0,
+                                  help="The subject ID for synthesis")
+
         self._initialized = True
 
     def parse(self):
