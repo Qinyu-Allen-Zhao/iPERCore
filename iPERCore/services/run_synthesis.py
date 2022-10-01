@@ -123,7 +123,7 @@ def imitate(opt):
             "smpls": coco_info['smpls'][choices]
         }
         out_dir = "/content/drive/MyDrive/datasets/synthesis_dataset/"
-        prefix = 'sub%s' % i
+        prefix = 'sub%s_' % i
         _ = call_imitator_inference(
             opt, imitator, out_dir, prefix,
             ref_smpls=ref_info["smpls"],
