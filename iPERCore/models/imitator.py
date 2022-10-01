@@ -1,6 +1,7 @@
 # Copyright (c) 2020-2021 impersonator.org authors (Wen Liu and Zhixin Piao). All rights reserved.
 
 import os
+import time
 
 import cv2
 import torch
@@ -393,7 +394,7 @@ class Imitator(BaseRunnerModel):
             temp_enc_outs=temp_enc_outs, temp_res_outs=temp_res_outs, Ttt=Ttt
         )
 
-        idx = np.random.choice(range(20000), tsf_img.shape[0])
+        idx = np.random.choice(range(27000), tsf_img.shape[0])
         bgs = []
         for i in idx:
             bg = cv2.imread('/content/drive/MyDrive/datasets/background/%d.jpg' % i)
@@ -404,6 +405,10 @@ class Imitator(BaseRunnerModel):
         bg_img = torch.from_numpy(bg_img).to(self.device)
 
         pred_imgs = tsf_mask * bg_img + (1 - tsf_mask) * tsf_img
+
+        curr = time.time()
+        torch.save(tsf_mask, '/content/drive/MyDrive/datasets/syn_human/%d_mask.pt' % curr)
+        torch.save(tsf_img, '/content/drive/MyDrive/datasets/syn_human/%d_img.pt' % curr)
 
         return pred_imgs, tsf_mask
 
