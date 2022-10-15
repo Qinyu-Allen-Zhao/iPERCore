@@ -12,7 +12,7 @@ image_size = 512
 num_source = 2
 
 # the assets directory. This is very important, please download it from `one_drive_url` firstly.
-assets_dir = "/content/iPERCore/assets"
+assets_dir = "./assets"
 
 # the output directory.
 output_dir = "./results"
@@ -31,15 +31,15 @@ if not os.path.exists(work_asserts_dir):
 
 cfg_path = osp.join(work_asserts_dir, "configs", "deploy.toml")
 
-subjects = os.listdir('/content/iPERCore/assets/samples/sources/syn_subjects/')
+subjects = os.listdir('./assets/samples/sources/syn_subjects/')
 subject_id = [int(x[:-4]) for x in subjects]
 
 for i in subject_id:
     model_id = "synthesis_%d" % i
 
-    src_path = "\"path?=/content/iPERCore/assets/samples/sources/syn_subjects/%d.jpg,name?=syn_subjects_%d\"" % (i, i)
+    src_path = "\"path?=./assets/samples/sources/syn_subjects/%d.jpg,name?=syn_subjects_%d\"" % (i, i)
 
-    ref_path = "\"path?=/content/iPERCore/assets/samples/references/akun_1.mp4," \
+    ref_path = "\"path?=./assets/samples/references/akun_1.mp4," \
                "name?=akun_1," \
                "pose_fc?=400\""
 
