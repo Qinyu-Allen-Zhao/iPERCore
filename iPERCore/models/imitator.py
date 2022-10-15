@@ -397,7 +397,7 @@ class Imitator(BaseRunnerModel):
         idx = np.random.choice(range(27000), tsf_img.shape[0])
         bgs = []
         for i in idx:
-            bg = cv2.imread('/content/drive/MyDrive/datasets/background/%d.jpg' % i)
+            bg = cv2.imread('/home/qinyu.zhao/datasets/background/%d.jpg' % i)
             bg = cv2.cvtColor(bg, cv2.COLOR_BGR2RGB)
             bg = np.transpose(bg, (2, 0, 1))
             bgs.append(bg[np.newaxis, :, :, :])
