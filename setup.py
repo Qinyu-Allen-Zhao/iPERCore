@@ -116,6 +116,8 @@ def get_cuda_version() -> float:
         version (float): the cuda version.
 
     """
+    os.environ["CUDA_HOME"] = "/usr/local/cuda-11.0"
+
     global VALID_CUDA
 
     # In windows, the cuda_install.exe will set the `CUDA_PATH` to the system environmental variables.
