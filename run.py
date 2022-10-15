@@ -1,13 +1,6 @@
 import os
 import os.path as osp
 import platform
-import argparse
-import time
-import sys
-import subprocess
-import numpy as np
-from IPython.display import HTML
-from base64 import b64encode
 
 # the gpu ids
 gpu_ids = "0"
@@ -47,8 +40,8 @@ for i in subject_id:
     src_path = "\"path?=/content/iPERCore/assets/samples/sources/syn_subjects/%d.jpg,name?=syn_subjects_%d\"" % (i, i)
 
     ref_path = "\"path?=/content/iPERCore/assets/samples/references/akun_1.mp4," \
-              "name?=akun_1," \
-              "pose_fc?=400\""
+               "name?=akun_1," \
+               "pose_fc?=400\""
 
     command = "python -m iPERCore.services.run_synthesis  \
         --gpu_ids     $gpu_ids       \
