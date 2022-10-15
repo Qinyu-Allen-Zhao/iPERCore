@@ -43,14 +43,14 @@ for i in subject_id[:1]:
                "name?=akun_1," \
                "pose_fc?=400\""
 
-    command = "python -m iPERCore.services.run_synthesis  \
-        --gpu_ids     $gpu_ids       \
-        --num_source  $num_source    \
-        --image_size  $image_size    \
-        --output_dir  $output_dir    \
-        --model_id    $model_id      \
-        --cfg_path    $cfg_path      \
-        --src_path    $src_path      \
-        --ref_path    $ref_path      \
-        --sub_id      $i"
+    command = f"python -m iPERCore.services.run_synthesis" + \
+              f" --gpu_ids {gpu_ids}" + \
+              f" --num_source {num_source}" + \
+              f" --image_size {image_size}" + \
+              f" --output_dir {output_dir}" + \
+              f" --model_id {model_id}" + \
+              f" --cfg_path {cfg_path}" + \
+              f" --src_path {src_path}" + \
+              f" --ref_path {ref_path}" + \
+              f" --sub_id {i}"
     os.system(command)
