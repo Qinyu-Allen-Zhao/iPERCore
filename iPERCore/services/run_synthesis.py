@@ -118,7 +118,7 @@ def imitate(opt):
         vid_info_path: ../tests/debug/primitives/bantangzhuyi_1/processed/vid_info.pkl
         """
 
-        choices = np.random.choice(range(len(coco_info['smpls'])), 500, replace=False)
+        choices = np.random.choice(range(len(coco_info['smpls'])), 50, replace=False)
         ref_info = {
             "smpls": coco_info['smpls'][choices]
         }
