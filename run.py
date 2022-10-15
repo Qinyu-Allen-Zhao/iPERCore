@@ -34,7 +34,7 @@ cfg_path = osp.join(work_asserts_dir, "configs", "deploy.toml")
 subjects = os.listdir('./assets/samples/sources/syn_subjects/')
 subject_id = [int(x[:-4]) for x in subjects]
 
-for i in subject_id:
+for i in subject_id[0]:
     model_id = "synthesis_%d" % i
 
     src_path = "\"path?=./assets/samples/sources/syn_subjects/%d.jpg,name?=syn_subjects_%d\"" % (i, i)
