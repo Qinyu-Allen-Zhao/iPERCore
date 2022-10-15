@@ -407,8 +407,8 @@ class Imitator(BaseRunnerModel):
         pred_imgs = tsf_mask * bg_img + (1 - tsf_mask) * (tsf_img + 1) / 2.0
 
         curr = time.time()
-        torch.save(tsf_mask, '/content/drive/MyDrive/datasets/syn_human/%d_mask.pt' % curr)
-        torch.save(tsf_img, '/content/drive/MyDrive/datasets/syn_human/%d_img.pt' % curr)
+        torch.save(tsf_mask, '/home/qinyu.zhao/datasets/syn_human/%d_mask.pt' % curr)
+        torch.save(tsf_img, '/home/qinyu.zhao/datasets/syn_human/%d_img.pt' % curr)
 
         return pred_imgs, tsf_mask
 
