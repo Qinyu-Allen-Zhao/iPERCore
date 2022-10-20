@@ -1,4 +1,5 @@
 # Copyright (c) 2020-2021 impersonator.org authors (Wen Liu and Zhixin Piao). All rights reserved.
+import joblib
 
 from iPERCore.models import ModelsFactory
 from iPERCore.tools.utils.signals.smooth import temporal_smooth_smpls
@@ -157,6 +158,7 @@ def imitate(opt):
             ref_proc_info.deserialize()
 
             ref_info = ref_proc_info.convert_to_ref_info()
+            joblib.dump(ref_info["smpls"], "./smpl_presen.pkl")
 
             results_dict = call_imitator_inference(
                 opt, imitator, meta_output,

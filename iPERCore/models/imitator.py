@@ -385,7 +385,7 @@ class Imitator(BaseRunnerModel):
         return outputs
 
     def forward(self, tsf_inputs, Tst, temp_enc_outs=None, temp_res_outs=None, Ttt=None):
-        # bg_img = self.src_info["bg"]  # (bs, 3, h, w)
+        bg_img = self.src_info["bg"]  # (bs, 3, h, w)
 
         src_enc_outs, src_res_outs = self.src_info["feats"]  # [(bs * ns, c1, h1, w1), ..., (bs * ns, c2, h2, w2)]
 
@@ -394,15 +394,15 @@ class Imitator(BaseRunnerModel):
             temp_enc_outs=temp_enc_outs, temp_res_outs=temp_res_outs, Ttt=Ttt
         )
 
-        idx = np.random.choice(range(27000), tsf_img.shape[0])
-        bgs = []
-        for i in idx:
-            bg = cv2.imread('/home/qinyu.zhao/datasets/background/%d.jpg' % i)
-            bg = cv2.cvtColor(bg, cv2.COLOR_BGR2RGB)
-            bg = np.transpose(bg, (2, 0, 1))
-            bgs.append(bg[np.newaxis, :, :, :])
-        bg_img = np.concatenate(bgs).astype(np.float32) / 255
-        bg_img = torch.from_numpy(bg_img).to(self.device)
+        # idx = np.random.choice(range(27000), tsf_img.shape[0])
+        # bgs = []
+        # for i in idx:
+        #     bg = cv2.imread('/home/qinyu.zhao/datasets/background/%d.jpg' % i)
+        #     bg = cv2.cvtColor(bg, cv2.COLOR_BGR2RGB)
+        #     bg = np.transpose(bg, (2, 0, 1))
+        #     bgs.append(bg[np.newaxis, :, :, :])
+        # bg_img = np.concatenate(bgs).astype(np.float32) / 255
+        # bg_img = torch.from_numpy(bg_img).to(self.device)
 
         pred_imgs = tsf_mask * bg_img + (1 - tsf_mask) * (tsf_img + 1) / 2.0
 
